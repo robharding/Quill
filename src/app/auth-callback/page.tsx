@@ -2,7 +2,7 @@
 
 import type { NextPage } from "next";
 import { useRouter, useSearchParams } from "next/navigation";
-import { trpc } from "@/trpc/client";
+import { trpc } from "@/app/_trpc/client";
 import { useEffect } from "react";
 import { Loader2 } from "lucide-react";
 

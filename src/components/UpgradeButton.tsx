@@ -3,7 +3,7 @@
 import { FC } from "react";
 import { Button } from "./ui/button";
 import { ArrowRight } from "lucide-react";
-import { trpc } from "@/trpc/client";
+import { trpc } from "@/app/_trpc/client";
 
 interface UpgradeButtonProps {}
 

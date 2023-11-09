@@ -3,7 +3,7 @@
 import { getUserSubscriptionPlan } from "@/lib/stripe";
 import { FC } from "react";
 import { useToast } from "./ui/use-toast";
-import { trpc } from "@/trpc/client";
+import { trpc } from "@/app/_trpc/client";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import {
   Card,

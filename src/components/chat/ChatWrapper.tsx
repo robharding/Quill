@@ -3,7 +3,7 @@
 import { FC } from "react";
 import Messages from "./Messages";
 import ChatInput from "./ChatInput";
-import { trpc } from "@/trpc/client";
+import { trpc } from "@/app/_trpc/client";
 import { ChevronLeft, Loader2, XCircle } from "lucide-react";
 import Link from "next/link";
 import { buttonVariants } from "../ui/button";

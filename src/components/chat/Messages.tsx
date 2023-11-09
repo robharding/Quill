@@ -1,5 +1,5 @@
 import { INFINITE_QUERY_LIMIT } from "@/config/infinite-query";
-import { trpc } from "@/trpc/client";
+import { trpc } from "@/app/_trpc/client";
 import { Loader2, MessageSquareIcon } from "lucide-react";
 import { FC, useContext, useEffect, useRef } from "react";
 import Skeleton from "react-loading-skeleton";

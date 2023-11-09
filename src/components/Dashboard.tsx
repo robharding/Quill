@@ -3,7 +3,7 @@
 import { User } from "@prisma/client";
 import { FC, useState } from "react";
 import UploadButton from "./UploadButton";
-import { trpc } from "@/trpc/client";
+import { trpc } from "@/app/_trpc/client";
 import { Ghost, Loader2, MessageSquare, Plus, Trash } from "lucide-react";
 import Skeleton from "react-loading-skeleton";
 import Link from "next/link";
