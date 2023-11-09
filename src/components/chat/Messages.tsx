@@ -83,7 +83,10 @@ const Messages: FC<MessagesProps> = ({ fileId }) => {
       ) : isLoading ? (
         <div className="flex-1 flex flex-col items-center justify-center gap-2">
           <Loader2 className="h-8 w-8 text-blue-500 animate-spin" />
-          <h3 className="font-semibold text-xl">Loading chat...</h3>
+          <h3 className="font-semibold text-xl">Loading</h3>
+          <p className="text-zinc-500 text-sm">
+            Fetching your previous messages...
+          </p>
         </div>
       ) : (
         <div className="flex-1 flex flex-col items-center justify-center gap-2">
