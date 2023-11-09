@@ -32,6 +32,7 @@ export default function RootLayout({
         >
           <Toaster />
           <Navbar />
+          test
           {children}
         </body>
       </Providers>
