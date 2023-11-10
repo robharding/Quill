@@ -4,15 +4,63 @@ import { User } from "@prisma/client";
 import { FC, useState } from "react";
 import UploadButton from "./UploadButton";
 import { trpc } from "@/app/_trpc/client";
-import { Ghost, Loader2, MessageSquare, Plus, Trash } from "lucide-react";
+import {
+  Delete,
+  Ghost,
+  Loader2,
+  MessageSquare,
+  Plus,
+  Trash,
+} from "lucide-react";
 import Skeleton from "react-loading-skeleton";
 import Link from "next/link";
 import { format } from "date-fns";
-import { Button } from "./ui/button";
+import { Button, buttonVariants } from "./ui/button";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "./ui/alert-dialog";
+import { AlertDialogCancel } from "@radix-ui/react-alert-dialog";
 
 interface DashboardProps {
   user: User;
 }
+
+const DeleteFileButton = ({
+  deleteFile,
+  children,
+}: {
+  deleteFile: () => void;
+  children: React.ReactNode;
+}) => (
+  <AlertDialog>
+    <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
+    <AlertDialogContent>
+      <AlertDialogHeader>
+        <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+        <AlertDialogDescription>
+          This action cannot be undone. This will permanently delete the file
+          and remove it from our servers.
+        </AlertDialogDescription>
+      </AlertDialogHeader>
+      <AlertDialogFooter className="gap-4">
+        <AlertDialogCancel>Cancel</AlertDialogCancel>
+        <AlertDialogAction
+          onClick={deleteFile}
+          className={buttonVariants({ variant: "destructive" })}
+        >
+          Delete
+        </AlertDialogAction>
+      </AlertDialogFooter>
+    </AlertDialogContent>
+  </AlertDialog>
+);
 
 const Dashboard: FC<DashboardProps> = ({}) => {
   const [currentlyDeletingFile, setCurrentlyDeletingFile] = useState<
@@ -82,18 +130,21 @@ const Dashboard: FC<DashboardProps> = ({}) => {
                     {file._count?.messages}
                   </div>
 
-                  <Button
-                    variant="destructive"
-                    size="sm"
-                    className="w-full hover:bg-red-100/90"
-                    onClick={() => deleteFile({ id: file.id })}
+                  <DeleteFileButton
+                    deleteFile={() => deleteFile({ id: file.id })}
                   >
-                    {currentlyDeletingFile === file.id ? (
-                      <Loader2 className="animate-spin h-4 w-4" />
-                    ) : (
-                      <Trash className="h-4 w-4" />
-                    )}
-                  </Button>
+                    <Button
+                      variant="destructive"
+                      size="sm"
+                      className="w-full hover:bg-red-100/90"
+                    >
+                      {currentlyDeletingFile === file.id ? (
+                        <Loader2 className="animate-spin h-4 w-4" />
+                      ) : (
+                        <Trash className="h-4 w-4" />
+                      )}
+                    </Button>
+                  </DeleteFileButton>
                 </div>
               </li>
             ))}
