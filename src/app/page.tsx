@@ -4,8 +4,11 @@ import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import Image from "next/image";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 export default function Home() {
+  const { isAuthenticated } = getKindeServerSession();
+
   return (
     <>
       {/* hero section */}
@@ -25,7 +28,7 @@ export default function Home() {
         </p>
 
         <Link
-          href="/dashboard"
+          href={isAuthenticated() ? "/dashboard" : "/sign-up"}
           target="_blank"
           className={cn(buttonVariants({ size: "lg", className: "mt-5" }))}
         >
