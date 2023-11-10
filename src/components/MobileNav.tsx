@@ -82,6 +82,16 @@ const MobileNav: FC<MobileNavProps> = ({ isAuthed }) => {
                 <li>
                   <Link
                     className="flex items-center w-full font-semibold"
+                    href="/dashboard/billing"
+                    onClick={() => closeOnCurrent("/dashboard/billing")}
+                  >
+                    Billing
+                  </Link>
+                </li>
+                <li className="my-3 h-px w-full bg-gray-300" />
+                <li>
+                  <Link
+                    className="flex items-center w-full font-semibold"
                     href="/sign-out"
                   >
                     Sign Out
