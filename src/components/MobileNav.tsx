@@ -1,15 +1,16 @@
 "use client";
 
-import { ArrowRight, Menu } from "lucide-react";
+import { ArrowRight, Gem, Menu } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FC, useEffect, useState } from "react";
 
 interface MobileNavProps {
   isAuthed: boolean;
+  isSubscribed: boolean;
 }
 
-const MobileNav: FC<MobileNavProps> = ({ isAuthed }) => {
+const MobileNav: FC<MobileNavProps> = ({ isAuthed, isSubscribed }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const toggleOpen = () => setIsOpen((prev) => !prev);
@@ -79,15 +80,26 @@ const MobileNav: FC<MobileNavProps> = ({ isAuthed }) => {
                   </Link>
                 </li>
                 <li className="my-3 h-px w-full bg-gray-300" />
-                <li>
-                  <Link
-                    className="flex items-center w-full font-semibold"
-                    href="/dashboard/billing"
-                    onClick={() => closeOnCurrent("/dashboard/billing")}
-                  >
-                    Billing
-                  </Link>
-                </li>
+                {!isSubscribed ? (
+                  <li>
+                    <Link
+                      href="/pricing"
+                      className="flex items-center w-full font-semibold"
+                    >
+                      Upgrade <Gem className="text-blue-600 h-4 w-4 ml-1.5" />
+                    </Link>
+                  </li>
+                ) : (
+                  <li>
+                    <Link
+                      className="flex items-center w-full font-semibold"
+                      href="/dashboard/billing"
+                      onClick={() => closeOnCurrent("/dashboard/billing")}
+                    >
+                      Manage Subscription
+                    </Link>
+                  </li>
+                )}
                 <li className="my-3 h-px w-full bg-gray-300" />
                 <li>
                   <Link

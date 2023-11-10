@@ -10,12 +10,15 @@ import {
 import { ArrowRight, Brush } from "lucide-react";
 import UserAccountNav from "./UserAccountNav";
 import MobileNav from "./MobileNav";
+import { getUserSubscriptionPlan } from "@/lib/stripe";
 
 interface NavbarProps {}
 
-const Navbar: FC<NavbarProps> = ({}) => {
+const Navbar: FC<NavbarProps> = async ({}) => {
   const { getUser } = getKindeServerSession();
   const user = getUser();
+
+  const { isSubscribed } = await getUserSubscriptionPlan();
 
   return (
     <nav className="sticky h-14 inset-x-0 top-0 z-30 w-full border-b border-gray-200 bg-white/75 backdrop-blur-lg transition-all">
@@ -25,7 +28,7 @@ const Navbar: FC<NavbarProps> = ({}) => {
             <span>quill.</span>
           </Link>
 
-          <MobileNav isAuthed={!!user} />
+          <MobileNav isAuthed={!!user} isSubscribed={isSubscribed} />
 
           <div className="hidden items-center space-x-4 sm:flex">
             {!user ? (
