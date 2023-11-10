@@ -17,7 +17,8 @@ const MobileNav: FC<MobileNavProps> = ({ isAuthed }) => {
   // close nav when pathname or isOpen changes
   const pathname = usePathname();
   useEffect(() => {
-    toggleOpen();
+    if (isOpen) toggleOpen();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   const closeOnCurrent = (href: string) => {
