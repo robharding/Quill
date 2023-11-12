@@ -16,10 +16,12 @@ export const ourFileRouter = {
       const user = await getUser();
 
       if (!user || !user.id) throw new Error("Unauthorized");
+      console.log("ACCEPTED");
 
       return { userId: user.id };
     })
     .onUploadComplete(async ({ metadata, file }) => {
+      console.log("COMPLETE");
       const createdFile = await db.file.create({
         data: {
           key: file.key,
