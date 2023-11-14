@@ -12,9 +12,11 @@ import { useToast } from "./ui/use-toast";
 import { trpc } from "@/app/_trpc/client";
 import { useRouter } from "next/navigation";
 
-interface UploadButtonProps {}
+interface UploadButtonProps {
+  isSubscribed: boolean;
+}
 
-const UploadDropzone: FC = () => {
+const UploadDropzone: FC<UploadButtonProps> = ({ isSubscribed }) => {
   const router = useRouter();
 
   const [isUploading, setIsUploading] = useState<boolean>(false);
@@ -22,7 +24,9 @@ const UploadDropzone: FC = () => {
   const [uploadProgress, setUploadProgress] = useState<number>(0);
   const { toast } = useToast();
 
-  const { startUpload } = useUploadThing("pdfUploader");
+  const { startUpload } = useUploadThing(
+    isSubscribed ? "proUploader" : "freeUploader"
+  );
 
   const { mutate: startPolling } = trpc.getFile.useMutation({
     onSuccess: (file) => {
@@ -157,7 +161,7 @@ const UploadDropzone: FC = () => {
   );
 };
 
-const UploadButton: FC<UploadButtonProps> = ({}) => {
+const UploadButton: FC<UploadButtonProps> = ({ isSubscribed }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
@@ -167,7 +171,7 @@ const UploadButton: FC<UploadButtonProps> = ({}) => {
       </DialogTrigger>
 
       <DialogContent>
-        <UploadDropzone />
+        <UploadDropzone isSubscribed={isSubscribed} />
       </DialogContent>
     </Dialog>
   );
