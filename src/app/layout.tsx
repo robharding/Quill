@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn, constructMetadata } from "@/lib/utils";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -11,10 +11,7 @@ import "simplebar-react/dist/simplebar.min.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "Quill",
-  description: "Chat with your PDFs using the power of AI.",
-};
+export const metadata: Metadata = constructMetadata();
 
 export default function RootLayout({
   children,
