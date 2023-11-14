@@ -40,8 +40,8 @@ export function constructMetadata({
       ],
     },
     icons,
-    metadataBase: new URL("https://quill-steel.vercel.app"),
-    themeColor: "#ffffff",
+    metadataBase: new URL("https://quill.robharding.dev"),
+    themeColor: "#FFF",
     ...(noIndex && {
       robots: {
         index: false,
