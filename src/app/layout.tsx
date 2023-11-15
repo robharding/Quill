@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Providers from "@/components/Providers";
 import { Toaster } from "@/components/ui/toaster";
+import Script from "next/script";
 
 import "react-loading-skeleton/dist/skeleton.css";
 import "simplebar-react/dist/simplebar.min.css";
@@ -32,6 +33,11 @@ export default function RootLayout({
           {children}
         </body>
       </Providers>
+      <Script
+        async
+        src="https://umami-seven-alpha.vercel.app/script.js"
+        data-website-id="f0d8fe53-6d29-410d-9aca-6d1d8032ff41"
+      ></Script>
     </html>
   );
 }
