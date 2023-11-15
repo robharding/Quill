@@ -39,6 +39,7 @@ const Navbar: FC<NavbarProps> = async ({}) => {
                     size: "sm",
                   })}
                   href="/pricing"
+                  data-umami-event="nav-pricing-button-clicked"
                 >
                   Pricing
                 </Link>
@@ -47,6 +48,7 @@ const Navbar: FC<NavbarProps> = async ({}) => {
                     variant: "ghost",
                     size: "sm",
                   })}
+                  data-umami-event="nav-sign-in-button-clicked"
                 >
                   Sign in
                 </LoginLink>
@@ -54,6 +56,7 @@ const Navbar: FC<NavbarProps> = async ({}) => {
                   className={buttonVariants({
                     size: "sm",
                   })}
+                  data-umami-event="nav-get-started-button-clicked"
                 >
                   Get started <ArrowRight className="ml-1.5 h-5 w-5" />
                 </RegisterLink>
@@ -66,6 +69,7 @@ const Navbar: FC<NavbarProps> = async ({}) => {
                     size: "sm",
                   })}
                   href="/dashboard"
+                  data-umami-event="nav-dashboard-button-clicked"
                 >
                   Dashboard
                 </Link>

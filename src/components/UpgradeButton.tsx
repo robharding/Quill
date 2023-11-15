@@ -15,7 +15,11 @@ const UpgradeButton: FC<UpgradeButtonProps> = ({}) => {
   });
 
   return (
-    <Button className="w-full" onClick={() => createStripeSession()}>
+    <Button
+      className="w-full"
+      onClick={() => createStripeSession()}
+      data-umami-event="pricing-upgrade-button-clicked"
+    >
       Upgrade now <ArrowRight className="h-5 w-5 ml-1.5" />
     </Button>
   );

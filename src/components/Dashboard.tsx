@@ -48,6 +48,7 @@ const DeleteFileButton = ({
         <AlertDialogAction
           onClick={deleteFile}
           className={buttonVariants({ variant: "destructive" })}
+          data-umami-event="confirm-delete-file-button-clicked"
         >
           Delete
         </AlertDialogAction>
@@ -101,6 +102,7 @@ const Dashboard: FC<DashboardProps> = ({ isSubscribed }) => {
                 <Link
                   href={`/dashboard/${file.id}`}
                   className="flex flex-col gap-2"
+                  data-umami-event="file-card-clicked"
                 >
                   <div className="pt-6 px-6 flex w-full items-center justify-between space-x-6">
                     <div className="h-10 w-10 flex-shrink-0 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500" />
@@ -131,6 +133,7 @@ const Dashboard: FC<DashboardProps> = ({ isSubscribed }) => {
                       variant="destructive"
                       size="sm"
                       className="w-full hover:bg-red-100/90"
+                      data-umami-event="initial-delete-file-button-clicked"
                     >
                       {currentlyDeletingFile === file.id ? (
                         <Loader2 className="animate-spin h-4 w-4" />

@@ -184,6 +184,7 @@ const Page: FC<PageProps> = ({}) => {
                           className: "w-full",
                           variant: "secondary",
                         })}
+                        data-umami-event="pricing-sign-up-button-clicked"
                       >
                         {user ? "Go to Dashboard" : "Sign up"}
                         <ArrowRight className="w-5 h-5 ml-1.5" />
@@ -194,8 +195,9 @@ const Page: FC<PageProps> = ({}) => {
                       <Link
                         href="/sign-in"
                         className={buttonVariants({ className: "w-full" })}
+                        data-umami-event="pricing-sign-in-button-clicked"
                       >
-                        Sign up
+                        Sign in
                         <ArrowRight className="w-5 h-5 ml-1.5" />
                       </Link>
                     )}
