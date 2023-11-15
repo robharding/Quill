@@ -9,9 +9,6 @@ import { NextRequest } from "next/server";
 
 import { OpenAIStream, StreamingTextResponse } from "ai";
 
-// run on  edge
-export const runtime = "edge";
-
 export const POST = async (req: NextRequest) => {
   // endpoint for asking a question to a pdf file
 
