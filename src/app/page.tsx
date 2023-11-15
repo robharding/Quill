@@ -38,6 +38,7 @@ export default function Home() {
           href={isAuthenticated() ? "/dashboard" : "/sign-up"}
           target="_blank"
           className={cn(buttonVariants({ size: "lg", className: "mt-5" }))}
+          data-umami-event="get-started-button-clicked"
         >
           Get Started
           <ArrowRight className="ml-2 h-5 w-5" size={20} />
