@@ -40,6 +40,7 @@ export default function Home() {
           target="_blank"
           className={cn(buttonVariants({ size: "lg", className: "mt-5" }))}
           data-umami-event="get-started-button-clicked"
+          prefetch={isAuthenticated()}
         >
           Get Started
           <ArrowRight className="ml-2 h-5 w-5" size={20} />
