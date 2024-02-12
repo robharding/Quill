@@ -9,6 +9,9 @@ import { NextRequest } from "next/server";
 
 import { OpenAIStream, StreamingTextResponse } from "ai";
 
+// Use edge because of longer streaming timeouts on vercel
+export const runtime = "edge";
+
 export const POST = async (req: NextRequest) => {
   // endpoint for asking a question to a pdf file
 
