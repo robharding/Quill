@@ -32,9 +32,10 @@ export default function RootLayout({
           <Toaster />
           <Navbar />
           {children}
+
+          <SpeedInsights />
         </body>
       </Providers>
-      <SpeedInsights />
       <Script
         async
         src="https://umami-seven-alpha.vercel.app/script.js"
