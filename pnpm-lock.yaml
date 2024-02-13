@@ -68,6 +68,9 @@ dependencies:
   '@uploadthing/react':
     specifier: ^5.7.0
     version: 5.7.0(next@14.1.0)(react@18.2.0)(uploadthing@5.7.4)
+  '@vercel/speed-insights':
+    specifier: ^1.0.9
+    version: 1.0.9(next@14.1.0)(react@18.2.0)(svelte@4.2.10)(vue@3.4.18)
   ai:
     specifier: ^2.2.34
     version: 2.2.34(react@18.2.0)(solid-js@1.8.14)(svelte@4.2.10)(vue@3.4.18)
@@ -1569,6 +1572,36 @@ packages:
         optional: true
     dependencies:
       '@uploadthing/mime-types': 0.2.2
+    dev: false
+
+  /@vercel/speed-insights@1.0.9(next@14.1.0)(react@18.2.0)(svelte@4.2.10)(vue@3.4.18):
+    resolution: {integrity: sha512-f+XFP0O+aZ4Olj9h+BitkB1b4NJQaxtyCb69wWuDxytJHY6Pa4QtZPdBUftHOcajUCHRVeq062fk3MKXKtjNVQ==}
+    requiresBuild: true
+    peerDependencies:
+      '@sveltejs/kit': ^1 || ^2
+      next: '>= 13'
+      react: ^18 || ^19
+      svelte: ^4
+      vue: ^3
+      vue-router: ^4
+    peerDependenciesMeta:
+      '@sveltejs/kit':
+        optional: true
+      next:
+        optional: true
+      react:
+        optional: true
+      svelte:
+        optional: true
+      vue:
+        optional: true
+      vue-router:
+        optional: true
+    dependencies:
+      next: 14.1.0(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      svelte: 4.2.10
+      vue: 3.4.18(typescript@5.3.3)
     dev: false
 
   /@vue/compiler-core@3.4.18:

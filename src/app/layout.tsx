@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import Navbar from "@/components/Navbar";
 import Providers from "@/components/Providers";
@@ -33,6 +34,7 @@ export default function RootLayout({
           {children}
         </body>
       </Providers>
+      <SpeedInsights />
       <Script
         async
         src="https://umami-seven-alpha.vercel.app/script.js"
