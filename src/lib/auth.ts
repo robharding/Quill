@@ -101,7 +101,7 @@ export async function logout(): Promise<ActionResult> {
     sessionCookie.attributes
   );
 
-  return redirect("/");
+  return { error: null };
 }
 
 interface ActionResult {

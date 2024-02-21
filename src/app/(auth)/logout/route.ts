@@ -1,5 +1,8 @@
 import { logout } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
 export function GET() {
-  return logout();
+  logout();
+
+  return redirect("/");
 }
