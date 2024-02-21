@@ -13,7 +13,6 @@ import Image from "next/image";
 import { Icons } from "./Icons";
 import Link from "next/link";
 import { Gem } from "lucide-react";
-import { logout } from "@/lib/auth";
 
 interface UserAccountNavProps {
   email: string;
