@@ -1,5 +1,4 @@
 import { db } from "@/db";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
@@ -8,12 +7,12 @@ import { PineconeStore } from "langchain/vectorstores/pinecone";
 import { pinecone } from "@/lib/pinecone";
 import { getUserSubscriptionPlan } from "@/lib/stripe";
 import { PLANS } from "@/config/stripe";
+import { validateRequest } from "@/lib/auth";
 
 const f = createUploadthing();
 
 const middleware = async () => {
-  const { getUser } = getKindeServerSession();
-  const user = getUser();
+  const { user } = await validateRequest();
 
   if (!user || !user.id) throw new Error("Unauthorized");
 
