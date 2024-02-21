@@ -34,17 +34,12 @@ export default function RootLayout({
         >
           <Toaster />
           <Navbar />
-          <div>{children}</div>
+          {children}
           {authModal}
 
           <SpeedInsights />
         </body>
       </Providers>
-      <Script
-        async
-        src="https://umami-seven-alpha.vercel.app/script.js"
-        data-website-id="f0d8fe53-6d29-410d-9aca-6d1d8032ff41"
-      ></Script>
     </html>
   );
 }

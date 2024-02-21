@@ -21,7 +21,7 @@ const SignIn: FC<SignInProps> = ({ isModal = false }) => {
         <p className="px-8 text-center text-sm text-zinc-700">
           New to Breadit?{" "}
           <Link
-            href="signup"
+            href="/sign-up"
             className="hover:text-zinc-800 underline underline-offset-4"
             replace={isModal}
           >

@@ -8,7 +8,6 @@ import MobileNav from "./MobileNav";
 import { getUserSubscriptionPlan } from "@/lib/stripe";
 import { validateRequest } from "@/lib/auth";
 import { db } from "@/db";
-import NavAuthButtons from "./auth/NavAuthButtons";
 
 interface NavbarProps {}
 
@@ -41,11 +40,26 @@ const Navbar: FC<NavbarProps> = async ({}) => {
                     size: "sm",
                   })}
                   href="/pricing"
-                  data-umami-event="nav-pricing-button-clicked"
                 >
                   Pricing
                 </Link>
-                <NavAuthButtons />
+                <Link
+                  href="/sign-in"
+                  className={buttonVariants({
+                    variant: "ghost",
+                    size: "sm",
+                  })}
+                >
+                  Sign in
+                </Link>
+                <Link
+                  href="/sign-up"
+                  className={buttonVariants({
+                    size: "sm",
+                  })}
+                >
+                  Get started <ArrowRight className="ml-1.5 h-5 w-5" />
+                </Link>
               </>
             ) : (
               <>
@@ -55,7 +69,6 @@ const Navbar: FC<NavbarProps> = async ({}) => {
                     size: "sm",
                   })}
                   href="/dashboard"
-                  data-umami-event="nav-dashboard-button-clicked"
                 >
                   Dashboard
                 </Link>

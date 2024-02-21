@@ -18,7 +18,6 @@ export default async function Home() {
             href="https://github.com/robharding/Quill"
             target="_blank"
             className="mx-auto mb-4 flex max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-full border border-gray-200 bg-white px-7 py-2 shadow-md backdrop-blur transition-all hover:border-gray-300 hover:bg-white/50"
-            data-umami-event="github-button-clicked"
           >
             <p className="text-sm font-semibold text-gray-700 flex flex-row items-center gap-2">
               <Github className="h-4 w-4" />
@@ -36,10 +35,9 @@ export default async function Home() {
         </p>
 
         <Link
-          href={user ? "/dashboard" : "/signup"}
+          href={user ? "/dashboard" : "/sign-up"}
           target={user ? "_parent" : "_self"}
           className={cn(buttonVariants({ size: "lg", className: "mt-5" }))}
-          data-umami-event="get-started-button-clicked"
         >
           Get Started
           <ArrowRight className="ml-2 h-5 w-5" size={20} />

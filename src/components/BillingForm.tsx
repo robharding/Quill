@@ -59,7 +59,6 @@ const BillingForm: FC<BillingFormProps> = ({ subscriptionPlan }) => {
           <CardFooter className="flex flex-col items-start space-y-2 md:flex-row md:justify-between md:space-x-0">
             <Button
               type="submit"
-              data-umami-event="billing-form-button-clicked"
             >
               {isLoading ? (
                 <Loader2 className="h-4 w-4 mr-4 animate-spin" />

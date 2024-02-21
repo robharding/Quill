@@ -30,10 +30,7 @@ const UserAccountNav: FC<UserAccountNavProps> = async ({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="overflow-visible">
-        <Button
-          className="rounded-full h-8 w-8 aspect-square bg-slate-400"
-          data-umami-event="account-nav-opened"
-        >
+        <Button className="rounded-full h-8 w-8 aspect-square bg-slate-400">
           <Avatar className="relative w-8 h-8">
             {imageUrl ? (
               <div className="relative aspect-square h-full w-full">
@@ -63,27 +60,14 @@ const UserAccountNav: FC<UserAccountNavProps> = async ({
         <DropdownMenuSeparator />
 
         <DropdownMenuItem asChild>
-          <Link
-            href="/dashboard"
-            data-umami-event="account-nav-dashboard-button-clicked"
-          >
-            Dashboard
-          </Link>
+          <Link href="/dashboard">Dashboard</Link>
         </DropdownMenuItem>
 
         <DropdownMenuItem asChild>
           {subscriptionPlan.isSubscribed ? (
-            <Link
-              href="/dashboard/billing"
-              data-umami-event="account-nav-manage-subscription-button-clicked"
-            >
-              Manage Subscription
-            </Link>
+            <Link href="/dashboard/billing">Manage Subscription</Link>
           ) : (
-            <Link
-              href="/pricing"
-              data-umami-event="account-nav-upgrade-button-clicked"
-            >
+            <Link href="/pricing">
               Upgrade <Gem className="text-blue-600 h-4 w-4 ml-1.5" />
             </Link>
           )}
@@ -92,12 +76,7 @@ const UserAccountNav: FC<UserAccountNavProps> = async ({
         <DropdownMenuSeparator />
 
         <DropdownMenuItem asChild className="cursor-pointer">
-          <Link
-            href="/logout"
-            data-umami-event="account-nav-sign-out-button-clicked"
-          >
-            Log out
-          </Link>
+          <Link href="/sign-out">Log out</Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

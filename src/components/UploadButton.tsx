@@ -168,9 +168,7 @@ const UploadButton: FC<UploadButtonProps> = ({ isSubscribed }) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger onClick={() => setIsOpen(true)} asChild>
-        <Button data-umami-event="upload-pdf-button-clicked">Upload PDF</Button>
-      </DialogTrigger>
+      <DialogTrigger onClick={() => setIsOpen(true)} asChild></DialogTrigger>
 
       <DialogContent>
         <UploadDropzone isSubscribed={isSubscribed} />

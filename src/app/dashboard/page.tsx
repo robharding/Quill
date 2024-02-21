@@ -11,7 +11,7 @@ const DashboardPage: NextPage<DashboardPageProps> = async ({}) => {
   const { user } = await validateRequest();
   const { isSubscribed } = await getUserSubscriptionPlan();
 
-  if (!user || !user.id) redirect("/login");
+  if (!user || !user.id) redirect("/sign-in");
 
   const dbUser = await db.user.findFirst({
     where: {
@@ -19,7 +19,7 @@ const DashboardPage: NextPage<DashboardPageProps> = async ({}) => {
     },
   });
 
-  if (!dbUser) redirect("/login");
+  if (!dbUser) redirect("/sign-in");
 
   return <Dashboard user={dbUser} isSubscribed={isSubscribed} />;
 };
