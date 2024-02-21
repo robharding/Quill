@@ -13,6 +13,7 @@ const UserAuthForm: FC<UserAuthFormProps> = ({ className, ...props }) => {
       <Link
         href="/api/login/github"
         className={cn(buttonVariants({ size: "sm" }), "w-full")}
+        prefetch={false}
       >
         Github
       </Link>
