@@ -2,12 +2,10 @@ import { lucia, validateRequest } from "@/lib/auth";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-export const runtime = "edge";
-
 export function GET() {
   logout();
 
-  return redirect("/");
+  return Response.redirect("/");
 }
 
 async function logout(): Promise<ActionResult> {
