@@ -1,9 +1,8 @@
 import { lucia, validateRequest } from "@/lib/auth";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 
-export function GET() {
-  logout();
+export async function GET(): Promise<Response> {
+  await logout();
 
   return Response.redirect("/");
 }
