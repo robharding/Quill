@@ -8,7 +8,7 @@ export function GET() {
   return redirect("/");
 }
 
-export async function logout(): Promise<ActionResult> {
+async function logout(): Promise<ActionResult> {
   "use server";
   const { session } = await validateRequest();
 
