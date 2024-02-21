@@ -10,6 +10,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import "simplebar-react/dist/simplebar.min.css";
 import { cn, constructMetadata } from "@/lib/utils";
 import "./globals.css";
+import React from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,8 +18,10 @@ export const metadata: Metadata = constructMetadata();
 
 export default function RootLayout({
   children,
+  authModal,
 }: {
   children: React.ReactNode;
+  authModal: React.ReactNode;
 }) {
   return (
     <html lang="en" className="light">
@@ -31,7 +34,8 @@ export default function RootLayout({
         >
           <Toaster />
           <Navbar />
-          {children}
+          <>{children}</>
+          {authModal}
 
           <SpeedInsights />
         </body>

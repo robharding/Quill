@@ -2,23 +2,25 @@ import { FC } from "react";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import Link from "next/link";
 import { buttonVariants } from "./ui/button";
-import {
-  LoginLink,
-  RegisterLink,
-  getKindeServerSession,
-} from "@kinde-oss/kinde-auth-nextjs/server";
-import { ArrowRight, Brush } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import UserAccountNav from "./UserAccountNav";
 import MobileNav from "./MobileNav";
 import { getUserSubscriptionPlan } from "@/lib/stripe";
+import { validateRequest } from "@/lib/auth";
+import { db } from "@/db";
+import NavAuthButtons from "./auth/NavAuthButtons";
 
 interface NavbarProps {}
 
 const Navbar: FC<NavbarProps> = async ({}) => {
-  const { getUser } = getKindeServerSession();
-  const user = getUser();
-
+  const { user } = await validateRequest();
   const { isSubscribed } = await getUserSubscriptionPlan();
+
+  const dbUser = await db.user.findFirst({
+    where: {
+      id: user?.id,
+    },
+  });
 
   return (
     <nav className="sticky h-14 inset-x-0 top-0 z-30 w-full border-b border-gray-200 bg-white/75 backdrop-blur-lg transition-all">
@@ -43,23 +45,7 @@ const Navbar: FC<NavbarProps> = async ({}) => {
                 >
                   Pricing
                 </Link>
-                <LoginLink
-                  className={buttonVariants({
-                    variant: "ghost",
-                    size: "sm",
-                  })}
-                  data-umami-event="nav-sign-in-button-clicked"
-                >
-                  Sign in
-                </LoginLink>
-                <RegisterLink
-                  className={buttonVariants({
-                    size: "sm",
-                  })}
-                  data-umami-event="nav-get-started-button-clicked"
-                >
-                  Get started <ArrowRight className="ml-1.5 h-5 w-5" />
-                </RegisterLink>
+                <NavAuthButtons />
               </>
             ) : (
               <>
@@ -74,9 +60,9 @@ const Navbar: FC<NavbarProps> = async ({}) => {
                   Dashboard
                 </Link>
                 <UserAccountNav
-                  email={user.email ?? ""}
-                  imageUrl={user.picture ?? ""}
-                  name={user.given_name || "Your Account"}
+                  email={dbUser?.email ?? ""}
+                  imageUrl={dbUser?.avatarUrl ?? ""}
+                  name={user.username || "Your Account"}
                 />
               </>
             )}

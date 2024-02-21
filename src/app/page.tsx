@@ -4,10 +4,10 @@ import { ArrowRight, Github } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import Image from "next/image";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { validateRequest } from "@/lib/auth";
 
-export default function Home() {
-  const { isAuthenticated } = getKindeServerSession();
+export default async function Home() {
+  const { user } = await validateRequest();
 
   return (
     <>
@@ -36,11 +36,10 @@ export default function Home() {
         </p>
 
         <Link
-          href={isAuthenticated() ? "/dashboard" : "/sign-up"}
-          target="_blank"
+          href={user ? "/dashboard" : "/signup"}
+          target={user ? "_parent" : "_self"}
           className={cn(buttonVariants({ size: "lg", className: "mt-5" }))}
           data-umami-event="get-started-button-clicked"
-          prefetch={isAuthenticated()}
         >
           Get Started
           <ArrowRight className="ml-2 h-5 w-5" size={20} />

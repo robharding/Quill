@@ -1,18 +1,17 @@
 import Dashboard from "@/components/Dashboard";
 import { db } from "@/db";
+import { validateRequest } from "@/lib/auth";
 import { getUserSubscriptionPlan } from "@/lib/stripe";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import type { NextPage } from "next";
 import { redirect } from "next/navigation";
 
 interface DashboardPageProps {}
 
 const DashboardPage: NextPage<DashboardPageProps> = async ({}) => {
-  const { getUser } = getKindeServerSession();
-  const user = getUser();
+  const { user } = await validateRequest();
   const { isSubscribed } = await getUserSubscriptionPlan();
 
-  if (!user || !user.id) redirect("/auth-callback?origin=dashboard");
+  if (!user || !user.id) redirect("/login");
 
   const dbUser = await db.user.findFirst({
     where: {
@@ -20,7 +19,7 @@ const DashboardPage: NextPage<DashboardPageProps> = async ({}) => {
     },
   });
 
-  if (!dbUser) redirect("/auth-callback?origin=dashboard");
+  if (!dbUser) redirect("/login");
 
   return <Dashboard user={dbUser} isSubscribed={isSubscribed} />;
 };

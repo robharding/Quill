@@ -10,31 +10,6 @@ import { getUserSubscriptionPlan, stripe } from "@/lib/stripe";
 import { PLANS } from "@/config/stripe";
 
 export const appRouter = router({
-  authCallback: publicProcedure.mutation(async () => {
-    const { getUser } = getKindeServerSession();
-    const user = getUser();
-
-    if (!user || !user.id || !user.email)
-      throw new TRPCError({
-        code: "UNAUTHORIZED",
-      });
-
-    // check if user in db
-    const dbUser = await db.user.findFirst({
-      where: { id: user.id },
-    });
-
-    if (!dbUser) {
-      await db.user.create({
-        data: {
-          id: user.id,
-          email: user.email,
-        },
-      });
-    }
-
-    return { success: true };
-  }),
   getUserFiles: privateProcedure.query(({ ctx }) => {
     return db.file.findMany({
       where: {

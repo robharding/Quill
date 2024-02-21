@@ -13,7 +13,7 @@ import Image from "next/image";
 import { Icons } from "./Icons";
 import Link from "next/link";
 import { Gem } from "lucide-react";
-import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/server";
+import { logout } from "@/lib/auth";
 
 interface UserAccountNavProps {
   email: string;
@@ -93,9 +93,12 @@ const UserAccountNav: FC<UserAccountNavProps> = async ({
         <DropdownMenuSeparator />
 
         <DropdownMenuItem asChild className="cursor-pointer">
-          <LogoutLink data-umami-event="account-nav-sign-out-button-clicked">
+          <Link
+            href="/logout"
+            data-umami-event="account-nav-sign-out-button-clicked"
+          >
             Log out
-          </LogoutLink>
+          </Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
