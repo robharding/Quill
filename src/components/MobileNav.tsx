@@ -42,8 +42,8 @@ const MobileNav: FC<MobileNavProps> = ({ isAuthed, isSubscribed }) => {
                 <li>
                   <Link
                     className="flex items-center w-full font-semibold text-green-600"
-                    href="/sign-up"
-                    onClick={() => closeOnCurrent("/sign-up")}
+                    href="/signup"
+                    onClick={() => closeOnCurrent("/signup")}
                     data-umami-event="mobile-get-started-button-clicked"
                   >
                     Get started <ArrowRight className="ml-2 h-5 w-5" />
@@ -53,8 +53,8 @@ const MobileNav: FC<MobileNavProps> = ({ isAuthed, isSubscribed }) => {
                 <li>
                   <Link
                     className="flex items-center w-full font-semibold"
-                    href="/sign-in"
-                    onClick={() => closeOnCurrent("/sign-in")}
+                    href="/login"
+                    onClick={() => closeOnCurrent("/login")}
                     data-umami-event="mobile-sign-in-button-clicked"
                   >
                     Sign in

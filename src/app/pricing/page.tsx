@@ -191,7 +191,7 @@ const Page: FC<PageProps> = async ({}) => {
                       <UpgradeButton />
                     ) : (
                       <Link
-                        href="/sign-in"
+                        href="/login"
                         className={buttonVariants({ className: "w-full" })}
                         data-umami-event="pricing-sign-in-button-clicked"
                       >
