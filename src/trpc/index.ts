@@ -1,5 +1,4 @@
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { privateProcedure, publicProcedure, router } from "./trpc";
+import { privateProcedure, router } from "./trpc";
 import { TRPCError } from "@trpc/server";
 import { db } from "@/db";
 import { z } from "zod";

@@ -1,8 +1,6 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { PLANS } from "@/config/stripe";
 import { cn } from "@/lib/utils";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { useKindeAuth } from "@kinde-oss/kinde-auth-nextjs";
 import {
   TooltipContent,
   TooltipProvider,
@@ -14,6 +12,7 @@ import { ArrowRight, Check, HelpCircle, Minus } from "lucide-react";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import UpgradeButton from "@/components/UpgradeButton";
+import { validateRequest } from "@/lib/auth";
 
 interface PageProps {}
 
@@ -72,9 +71,8 @@ const pricingItems = [
   },
 ];
 
-const Page: FC<PageProps> = ({}) => {
-  const { getUser } = getKindeServerSession();
-  const user = getUser();
+const Page: FC<PageProps> = async ({}) => {
+  const { user } = await validateRequest();
 
   return (
     <>

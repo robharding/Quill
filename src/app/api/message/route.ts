@@ -2,12 +2,12 @@ import { db } from "@/db";
 import openai from "@/lib/openai";
 import { pinecone } from "@/lib/pinecone";
 import { SendMessageValidator } from "@/lib/validators/SendMessageValidator";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { PineconeStore } from "langchain/vectorstores/pinecone";
 import { NextRequest } from "next/server";
 
 import { OpenAIStream, StreamingTextResponse } from "ai";
+import { validateRequest } from "@/lib/auth";
 
 // Use edge because of longer streaming timeouts on vercel
 export const runtime = "edge";
@@ -17,10 +17,8 @@ export const POST = async (req: NextRequest) => {
 
   const body = await req.json();
 
-  const { getUser } = getKindeServerSession();
-  const user = getUser();
-  const { id: userId } = user;
-  if (!userId) {
+  const { user } = await validateRequest();
+  if (!user) {
     return new Response("Unauthorized", { status: 401 });
   }
 
@@ -29,7 +27,7 @@ export const POST = async (req: NextRequest) => {
   const file = await db.file.findFirst({
     where: {
       id: fileId,
-      userId,
+      userId: user.id,
     },
   });
 
@@ -40,7 +38,7 @@ export const POST = async (req: NextRequest) => {
       fileId,
       text: message,
       isUserMessage: true,
-      userId,
+      userId: user.id,
     },
   });
 
@@ -50,7 +48,7 @@ export const POST = async (req: NextRequest) => {
     openAIApiKey: process.env.OPENAI_API_KEY!,
   });
 
-  const pineconeIndex = pinecone.Index("quill").namespace(userId);
+  const pineconeIndex = pinecone.Index("quill").namespace(user.id);
 
   const vectorStore = await PineconeStore.fromExistingIndex(embeddings, {
     pineconeIndex,
@@ -117,7 +115,7 @@ export const POST = async (req: NextRequest) => {
           fileId,
           text: completion,
           isUserMessage: false,
-          userId,
+          userId: user.id,
         },
       });
     },

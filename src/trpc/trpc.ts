@@ -1,4 +1,4 @@
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { validateRequest } from "@/lib/auth";
 import { TRPCError, initTRPC } from "@trpc/server";
 
 const t = initTRPC.create();
@@ -7,8 +7,7 @@ const middleware = t.middleware;
 // could be using trpc context as well, but not necessary because
 // we dont need the user outside of private procedures
 const isAuth = middleware(async (opts) => {
-  const { getUser, isAuthenticated } = getKindeServerSession();
-  const user = getUser();
+  const { user } = await validateRequest();
 
   if (!user || !user.id) {
     throw new TRPCError({ code: "UNAUTHORIZED" });
