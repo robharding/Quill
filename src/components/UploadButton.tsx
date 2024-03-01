@@ -168,7 +168,9 @@ const UploadButton: FC<UploadButtonProps> = ({ isSubscribed }) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger onClick={() => setIsOpen(true)} asChild></DialogTrigger>
+      <DialogTrigger onClick={() => setIsOpen(true)} asChild>
+        <Button>Upload PDF</Button>
+      </DialogTrigger>
 
       <DialogContent>
         <UploadDropzone isSubscribed={isSubscribed} />
