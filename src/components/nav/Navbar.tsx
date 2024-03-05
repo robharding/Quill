@@ -8,6 +8,7 @@ import MobileNav from "./MobileNav";
 import { getUserSubscriptionPlan } from "@/lib/stripe";
 import { validateRequest } from "@/lib/auth";
 import { db } from "@/db";
+import Image from "next/image";
 
 interface NavbarProps {}
 
@@ -25,8 +26,12 @@ const Navbar: FC<NavbarProps> = async ({}) => {
     <nav className="sticky h-14 inset-x-0 top-0 z-30 w-full border-b border-gray-200 bg-white/75 backdrop-blur-lg transition-all">
       <MaxWidthWrapper>
         <div className="flex h-14 items-center justify-between border-b border-zinc-200">
-          <Link href="/" className="flex z-40 font-semibold ">
-            <span>quill.</span>
+          <Link
+            href="/"
+            className="flex z-40 font-semibold text-lg items-center gap-2"
+          >
+            <Image src="/favicon.ico" alt="logo" width={30} height={30} />
+            <span>Quill</span>
           </Link>
 
           <MobileNav isAuthed={!!user} isSubscribed={isSubscribed} />
